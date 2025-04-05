@@ -78,7 +78,7 @@ function GetStudentNotes({ id, getNotes }) {
 
         {/* //prav month */}
         <ul className={`_${id}note`}>
-          <h3> {`ملاحظات شهر ${pravMonth}`} </h3>
+          <h3>{`ملاحظات شهر ${pravMonth}`} </h3>
           {pravDatabase && pravDatabase[id].notes.length ? (
             pravDatabase[id].notes.map((n, index) => {
               return <li key={index}>{n}</li>;
