@@ -66,7 +66,7 @@ function GetStudentNotes({ id, getNotes }) {
         <h2 className="stu-name">{currentDatabase[id].name}</h2>
         {/* //current month */}
         <ul className={`_${id}note`}>
-          <h3>ملاحظات الشهر الحالي </h3>
+          <h3> {`ملاحظات شهر ${pravMonth + 1}`} </h3>
           {currentDatabase && currentDatabase[id].notes.length ? (
             currentDatabase[id].notes.map((n, index) => {
               return <li key={index}>{n}</li>;
@@ -78,7 +78,7 @@ function GetStudentNotes({ id, getNotes }) {
 
         {/* //prav month */}
         <ul className={`_${id}note`}>
-          <h3>ملاحظات الشهر السابق </h3>
+          <h3> {`ملاحظات شهر ${pravMonth}`} </h3>
           {pravDatabase && pravDatabase[id].notes.length ? (
             pravDatabase[id].notes.map((n, index) => {
               return <li key={index}>{n}</li>;

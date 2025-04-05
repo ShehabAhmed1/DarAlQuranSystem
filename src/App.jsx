@@ -1,6 +1,12 @@
 import { useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  HashRouter,
+  Routes,
+  Route,
+  Link,
+} from "react-router-dom";
 import History from "./Components/History";
 import Racepage from "./Components/RacePage";
 import Instructions from "./Components/Instructions";
@@ -9,7 +15,7 @@ import Surah from "./Components/Surah";
 import Notes from "./Components/Notes";
 function App() {
   return (
-    <Router>
+    <HashRouter>
       <Routes>
         <Route path="/" element={<Racepage />} />
         <Route path="/history" element={<History />} />
@@ -18,8 +24,7 @@ function App() {
         <Route path="/surah" element={<Surah />} />
         <Route path="/notes" element={<Notes />} />
       </Routes>
-    </Router>
+    </HashRouter>
   );
 }
-
 export default App;
