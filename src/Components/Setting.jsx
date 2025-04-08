@@ -2,11 +2,12 @@ import { React, useState } from "react";
 import { Route, useNavigate } from "react-router-dom";
 import { animate, motion } from "framer-motion";
 /**imgs ***/
-import shehab from "../assets/images/shehab_.png";
-import fahd from "../assets/images/fahd.png";
-import habiba_samy from "../assets/images/habiba-samy.png";
-import mohamed_hosam from "../assets/images/mohamed_hosam.png";
-import Abdelrahman_samy from "../assets/images/Abdelrahman_samy.png";
+import shehab from "../assets/images/students/shehab_.png";
+import fahd from "../assets/images/students/fahd.png";
+import habiba_samy from "../assets/images/students/habiba-samy.png";
+import mohamed_hosam from "../assets/images/students/mohamed_hosam.png";
+import Abdelrahman_samy from "../assets/images/students/Abdelrahman_samy.png";
+import Amen from "../assets/images/students/Amen.jpg";
 /**** icons ****/
 import { IoIosArrowBack } from "react-icons/io";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -78,6 +79,13 @@ const mainDatabase = {
     name: "عبدالرحمن سامي",
     score: 0,
     img: Abdelrahman_samy,
+    Classes: [false, false, false, false, false, false, false, false],
+    notes: [],
+  },
+  6: {
+    name: "امين اشرف",
+    score: 0,
+    img: Amen,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },

@@ -139,3 +139,4 @@ function Trow({ img, name, classes, score, ranking }) {
 }
 
 export default History;
+//
