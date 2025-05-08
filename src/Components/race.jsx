@@ -44,7 +44,7 @@ function Race() {
       <NoteBox showNote={showNote} setShowNote={setShowNote} />
       {Database.length == 0 ? (
         <ul className="prepared">
-          <h1>لو مفيش طلاب يبقي محتاج تحمل بياناتهم</h1>
+          <h1>.لو مفيش طلاب يبقي محتاج تحمل بياناتهم</h1>
           <li>
             <FaArrowLeft /> اضغط علي علامة الاعدادات
           </li>
