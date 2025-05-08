@@ -209,7 +209,6 @@ body {
   left: 0;
   top: -32px;
 }
-
 .student figure img {
   width: 70px;
   height: 70px;
@@ -399,6 +398,18 @@ input[type="checkbox"]:checked::after {
   font-size: 20px;
   cursor: pointer;
 }
+.prepared {
+  padding: 25vh 10px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  justify-content: center;
+  text-align: center;
+}
+.prepared li {
+  padding: 10px;
+  font-size: 20px;
+}
 /***** end race Componant ***********/
 
 /***** start history Componant ***********/
@@ -540,6 +551,10 @@ input[type="checkbox"]:checked::after {
 .quran .quran-content .surah-name:hover {
   transform: scale(1.05);
   background-color: var(--green2);
+}
+.waiting {
+  position: absolute;
+  margin: 50vh;
 }
 
 /***** end Quran Componant ***********/

@@ -6,6 +6,7 @@ import { delay, motion } from "framer-motion";
 import Navbar from "./NavBar";
 /***********************/
 import { IoMdCloseCircle } from "react-icons/io";
+import { FaArrowLeft } from "react-icons/fa6";
 /***** animations ***********/
 const AniScale = (duration, delayTime) => {
   return {
@@ -37,31 +38,43 @@ function Race() {
 
   //usestate to show note field
   const [showNote, setShowNote] = useState(false);
-
   return (
     <section className="race">
       <Navbar />
       <NoteBox showNote={showNote} setShowNote={setShowNote} />
-      <section className="students">
-        <div className="main-container">
-          {Object.entries(Database).map(([key, s]) => {
-            return (
-              <StudentBox
-                id={key}
-                key={key}
-                name={s.name}
-                score={s.score}
-                img={s.img}
-                classes={s.Classes}
-                setDatabase={setDatabase}
-                currentMonth={currentMonth}
-                showNote={showNote}
-                setShowNote={setShowNote}
-              />
-            );
-          })}
-        </div>
-      </section>
+      {Database.length == 0 ? (
+        <ul className="prepared">
+          <h1>لو مفيش طلاب يبقي محتاج تحمل بياناتهم</h1>
+          <li>
+            <FaArrowLeft /> اضغط علي علامة الاعدادات
+          </li>
+          <li>
+            {" "}
+            <FaArrowLeft /> اضغط رجع كل حاجه زي مهي
+          </li>
+        </ul>
+      ) : (
+        <section className="students">
+          <div className="main-container">
+            {Object.entries(Database).map(([key, s]) => {
+              return (
+                <StudentBox
+                  id={key}
+                  key={key}
+                  name={s.name}
+                  score={s.score}
+                  img={s.img}
+                  classes={s.Classes}
+                  setDatabase={setDatabase}
+                  currentMonth={currentMonth}
+                  showNote={showNote}
+                  setShowNote={setShowNote}
+                />
+              );
+            })}
+          </div>
+        </section>
+      )}
     </section>
   );
 }
