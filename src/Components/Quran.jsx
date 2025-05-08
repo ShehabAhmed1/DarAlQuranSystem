@@ -23,7 +23,7 @@ function Quran() {
     fetchQuran();
   }, []);
   if (!quran) {
-    return "استني دقيقة يا شيخ لو سمحت";
+    return <p>استني دقيقة يا شيخ لو سمحت</p>;
   } else {
     return (
       <div className="quran">
