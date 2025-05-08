@@ -82,9 +82,9 @@ function Thead() {
 
 function Tbody({ DataMonth }) {
   //ranking DataMonth ascending
-  const sortedArray = Object.values(DataMonth).sort(
-    (a, b) => b.score - a.score
-  );
+  const sortedArray = Object.values(DataMonth).sort((a, b) => {
+    return totalscore(b.score) - totalscore(a.score);
+  });
 
   // stor ranking for all student
   const [ranking, setRanking] = useState([]);
@@ -96,8 +96,8 @@ function Tbody({ DataMonth }) {
     const ranks = [];
 
     sortedArray.forEach((values, index) => {
-      if (values.score !== currentScore) {
-        currentScore = values.score;
+      if (totalscore(values.score) !== currentScore) {
+        currentScore = totalscore(values.score);
         currentRank = currentRank + 1;
       }
       ranks.push(currentRank);
@@ -122,6 +122,7 @@ function Tbody({ DataMonth }) {
 }
 
 function Trow({ img, name, classes, score, ranking }) {
+  const finalscore = totalscore(score);
   return (
     <tr>
       <td>{ranking}</td>
@@ -131,11 +132,19 @@ function Trow({ img, name, classes, score, ranking }) {
       </td>
       <td>{name}</td>
       <td>{classes}</td>
-      <td className={score >= 50 ? (score >= 75 ? "green" : "gold") : "red"}>
-        {score}%
+      <td
+        className={
+          finalscore >= 50 ? (finalscore >= 75 ? "green" : "gold") : "red"
+        }
+      >
+        {finalscore}%
       </td>
     </tr>
   );
+}
+
+function totalscore(score) {
+  return (score.old + score.new) / 2;
 }
 
 export default History;

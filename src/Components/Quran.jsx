@@ -22,30 +22,33 @@ function Quran() {
   useEffect(() => {
     fetchQuran();
   }, []);
-
-  return (
-    <div className="quran">
-      <Navbar />
-      <div className="main-container">
-        <div className="quran-content">
-          {quran.map((surahObject, index) => {
-            return (
-              <Link
-                to="/surah"
-                className="surah-name"
-                key={index}
-                onClick={() => {
-                  storeSurah(surahObject);
-                }}
-              >
-                {surahObject.name}
-              </Link>
-            );
-          })}
+  if (!quran) {
+    return "استني دقيقة يا شيخ لو سمحت";
+  } else {
+    return (
+      <div className="quran">
+        <Navbar />
+        <div className="main-container">
+          <div className="quran-content">
+            {quran.map((surahObject, index) => {
+              return (
+                <Link
+                  to="/surah"
+                  className="surah-name"
+                  key={index}
+                  onClick={() => {
+                    storeSurah(surahObject);
+                  }}
+                >
+                  {surahObject.name}
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 // to put surah in session storage

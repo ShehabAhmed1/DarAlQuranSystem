@@ -27,7 +27,7 @@ const percentage = 12.5;
 function Race() {
   //usestate to controle database
   let [Database, setDatabase] = useState(
-    JSON.parse(localStorage.getItem("database") || "[]")
+    JSON.parse(localStorage.getItem("Quran_Database") || "[]")
   );
 
   //usestate to controle current Month
@@ -102,36 +102,60 @@ function Student({ id, name, score, img, setDatabase, currentMonth }) {
       <div className="s-header">
         <span className="s-name">{name + " " + id}</span>
       </div>
-      <Progress score={score} img={img} />
-      <Pcontroler
-        id={id}
-        setDatabase={setDatabase}
-        currentMonth={currentMonth}
-      />
+      <div className="student-progress">
+        <div className="new-content">
+          <h1>الجديد</h1>
+          <Progress score={score} img={img} type={"new"} />
+          <Pcontroler
+            id={id}
+            setDatabase={setDatabase}
+            currentMonth={currentMonth}
+            type={"new"}
+          />
+        </div>
+        <span className="sperator"></span>
+        <div className="old-content">
+          <h1>الماضي</h1>
+          <Progress score={score} img={img} type={"old"} />
+          <Pcontroler id={id} setDatabase={setDatabase} type={"old"} />
+        </div>
+      </div>
+      <div className="currentMonth">
+        <p>الشهر الحالي</p>
+        <span>{currentMonth}</span>
+      </div>
     </div>
   );
 }
 
-//componant that show the progress to the student
-function Progress({ score, img }) {
+function Progress({ score, img, type }) {
+  const value = score[type]; // dynamically get the correct score type
+  const validatedValue = value > 100 || value < 0 ? 0 : value;
+
   return (
     <div className="progress">
       <figure
         style={{
-          //this is to controle progress's movement  and makesure that is not out off the container
-          right: `calc(${score > 100 || score < 0 ? 0 : score}% - 35px)`,
+          right: `calc(${validatedValue}% - 35px)`,
         }}
-        percentage={score + "%"}
+        data-percentage={validatedValue + "%"}
       >
-        <img src={img} alt="" />
+        <img src={img} alt="Progress marker" />
         <span className="after"></span>
       </figure>
+
       <div className="score">
         <span
           className={`score-movement ${
-            score >= 50 ? (score >= 75 ? "green" : "gold") : "red"
+            validatedValue >= 75
+              ? "green"
+              : validatedValue >= 50
+              ? "gold"
+              : "red"
           }`}
-          style={{ width: `${score > 100 || score < 0 ? 0 : score}%` }}
+          style={{
+            width: `${validatedValue}%`,
+          }}
         ></span>
       </div>
     </div>
@@ -139,26 +163,22 @@ function Progress({ score, img }) {
 }
 
 //componant that controle in progress + or - it
-function Pcontroler({ id, setDatabase, currentMonth }) {
+function Pcontroler({ id, setDatabase, type }) {
   return (
     <div className="controler">
       <div className="p_controler">
         <button
           className="increase"
-          onClick={() => update(id, "increase", setDatabase)}
+          onClick={() => update(id, "increase", setDatabase, type)}
         >
           +
         </button>
         <button
           className="decrease"
-          onClick={() => update(id, "decrease", setDatabase)}
+          onClick={() => update(id, "decrease", setDatabase, type)}
         >
           -
         </button>
-      </div>
-      <div className="currentMonth">
-        <p>الشهر الحالي</p>
-        <span>{currentMonth}</span>
       </div>
     </div>
   );
@@ -323,15 +343,15 @@ function NoteBox({ showNote, setShowNote }) {
 /*********** function ****************/
 
 //to update localstorage + or -
-function update(id, word, setDatabase) {
+function update(id, word, setDatabase, type) {
   //get old database
-  let Database = JSON.parse(localStorage.getItem("database"));
+  let Database = JSON.parse(localStorage.getItem("Quran_Database"));
 
   if (!Database) return; // make sure that there is database
 
   //check you and increase or decrease
   if (word == "increase") {
-    Database[id].score += Database[id].score < 100 ? percentage : 0;
+    Database[id].score[type] += Database[id].score[type] < 100 ? percentage : 0;
 
     /*this to update usestate so
     when change happen in mainDatabase don't need to 
@@ -339,30 +359,30 @@ function update(id, word, setDatabase) {
      so return new component*/
     setDatabase(Database);
   } else if (word == "decrease") {
-    Database[id].score -= Database[id].score > 0 ? percentage : 0;
+    Database[id].score[type] -= Database[id].score[type] > 0 ? percentage : 0;
     setDatabase(Database);
   }
-  localStorage.setItem("database", JSON.stringify(Database));
+  localStorage.setItem("Quran_Database", JSON.stringify(Database));
 }
 
 //to assign classes in localstorage
 function attendeding(id, classnum, setDatabase) {
   //get database
-  let database = JSON.parse(localStorage.getItem("database"));
+  let database = JSON.parse(localStorage.getItem("Quran_Database"));
   //update class to this id
   database[id].Classes[classnum] = !database[id].Classes[classnum];
   //return new database
-  localStorage.setItem("database", JSON.stringify(database));
+  localStorage.setItem("Quran_Database", JSON.stringify(database));
   //update state
   setDatabase(database);
 }
 
 //add note to localstorage for this student
 function addNote(id, data, note) {
-  let database = JSON.parse(localStorage.getItem("database"));
+  let database = JSON.parse(localStorage.getItem("Quran_Database"));
   note += `( ${data} )`;
   database[id].notes.push(note);
-  localStorage.setItem("database", JSON.stringify(database));
+  localStorage.setItem("Quran_Database", JSON.stringify(database));
 }
 
 export { Race };

@@ -166,6 +166,25 @@ body {
   color: var(--white1);
   font-size: 25px;
 }
+.student-progress {
+  display: flex;
+  justify-content: space-between;
+}
+.student-progress .new-content,
+.student-progress .old-content {
+  width: 48%;
+}
+.student-progress .new-content h1,
+.student-progress .old-content h1 {
+  color: var(--green3);
+  font-size: 25px;
+  text-align: center;
+}
+.student-progress .sperator {
+  width: 3px;
+  background-color: var(--green2);
+  border-radius: 5px;
+}
 .main-controle {
   display: flex;
   gap: 20px;
@@ -180,7 +199,7 @@ body {
   left: -32px;
 }
 .student figure::after {
-  content: attr(percentage);
+  content: attr(data-percentage);
   min-width: 50px;
   padding: 5px;
   background-color: black;
@@ -271,7 +290,7 @@ body {
 .student .controler .p_controler .decrease:hover {
   background-color: rgb(225, 45, 45);
 }
-.student .controler .currentMonth {
+.student .currentMonth {
   min-width: 35px;
   padding: 5px;
   gap: 20px;

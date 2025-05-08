@@ -8,6 +8,8 @@ import habiba_samy from "../assets/images/students/habiba-samy.png";
 import mohamed_hosam from "../assets/images/students/mohamed_hosam.png";
 import Abdelrahman_samy from "../assets/images/students/Abdelrahman_samy.png";
 import Amen from "../assets/images/students/Amen.jpg";
+import hamza from "../assets/images/students/Hamza.jpg";
+import mohamed_Abdelazez from "../assets/images/students/Mohamed_Abdelazez.png";
 /**** icons ****/
 import { IoIosArrowBack } from "react-icons/io";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -49,47 +51,86 @@ const spinning = () => {
 const mainDatabase = {
   1: {
     name: " فهد محمود",
-    score: 0,
+    score: {
+      new: 0,
+      old: 0,
+    },
     img: fahd,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },
   2: {
     name: "محمد حسام",
-    score: 0,
+    score: {
+      new: 0,
+      old: 0,
+    },
     img: mohamed_hosam,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },
   3: {
     name: "زياد محمد",
-    score: 0,
+    score: {
+      new: 0,
+      old: 0,
+    },
     img: shehab,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },
   4: {
     name: "حبيبة سامي",
-    score: 0,
+    score: {
+      new: 0,
+      old: 0,
+    },
     img: habiba_samy,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },
   5: {
     name: "عبدالرحمن سامي",
-    score: 0,
+    score: {
+      new: 0,
+      old: 0,
+    },
     img: Abdelrahman_samy,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },
   6: {
-    name: "امين اشرف",
-    score: 0,
-    img: Amen,
+    name: "محمد عبدالعزيز",
+    score: {
+      new: 0,
+      old: 0,
+    },
+    img: mohamed_Abdelazez,
+    Classes: [false, false, false, false, false, false, false, false],
+    notes: [],
+  },
+  7: {
+    name: "محمد اشرف",
+    score: {
+      new: 0,
+      old: 0,
+    },
+    img: shehab,
+    Classes: [false, false, false, false, false, false, false, false],
+    notes: [],
+  },
+  8: {
+    name: "حمزة علاء",
+    score: {
+      new: 0,
+      old: 0,
+    },
+    img: hamza,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },
 };
+
 function Setting() {
   // to route to history when i click on history button
   const navigate = useNavigate();
@@ -178,7 +219,13 @@ function Reset() {
 
 //to reset all
 function resetAll() {
-  localStorage.clear();
+  localStorage.removeItem("Quran_Database");
+  let currentMonth = JSON.parse(localStorage.getItem("currentMonth"));
+  localStorage.removeItem("currentMonth");
+  for (let i = currentMonth; i >= 1; i--) {
+    console.log(i);
+    localStorage.removeItem(`month${i}`);
+  }
   savecurrentMonth();
   savelocalstorage(mainDatabase);
 }
@@ -192,13 +239,13 @@ function savecurrentMonth() {
 //to put mainDatabase in localstorage
 function savelocalstorage(mainDatabase) {
   if (!mainDatabase) return;
-  localStorage.setItem("database", JSON.stringify(mainDatabase));
+  localStorage.setItem("Quran_Database", JSON.stringify(mainDatabase));
 }
 
 //to save data throught months m1,m2...
 function history() {
   let currentMonth = JSON.parse(localStorage.getItem("currentMonth"));
-  let data = JSON.parse(localStorage.getItem("database"));
+  let data = JSON.parse(localStorage.getItem("Quran_Database"));
 
   if (!currentMonth || !data) return;
   localStorage.setItem(`month${currentMonth}`, JSON.stringify(data));
