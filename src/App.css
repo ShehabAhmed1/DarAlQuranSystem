@@ -400,7 +400,7 @@ input[type="checkbox"]:checked::after {
 }
 .prepared {
   position: absolute;
-  transform: translateY(50%);
+  transform: translateY(70%);
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -414,7 +414,6 @@ input[type="checkbox"]:checked::after {
   padding: 10px;
   font-size: 20px;
   display: flex;
-  align-self: center;
   gap: 10px;
 }
 /***** end race Componant ***********/
@@ -530,7 +529,7 @@ input[type="checkbox"]:checked::after {
 }
 .instructions-content ul li:hover {
   background-color: var(--orange);
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 /***** end instructions Componant ***********/
 

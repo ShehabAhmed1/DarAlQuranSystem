@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Navbar from "./NavBar";
 import { NavigateBtn } from "./Setting";
 import { Link, useNavigate } from "react-router-dom";
+import { p } from "framer-motion/client";
 /****  icons ****/
 
 function Quran() {
@@ -28,20 +29,26 @@ function Quran() {
       <Navbar />
       <div className="main-container">
         <div className="quran-content">
-          {quran.map((surahObject, index) => {
-            return (
-              <Link
-                to="/surah"
-                className="surah-name"
-                key={index}
-                onClick={() => {
-                  storeSurah(surahObject);
-                }}
-              >
-                {surahObject.name}
-              </Link>
-            );
-          })}
+          {quran.length == 0 ? (
+            <p className="prepared" style={{ fontSize: 20 }}>
+              لحظه المصحف بيحمل...
+            </p>
+          ) : (
+            quran.map((surahObject, index) => {
+              return (
+                <Link
+                  to="/surah"
+                  className="surah-name"
+                  key={index}
+                  onClick={() => {
+                    storeSurah(surahObject);
+                  }}
+                >
+                  {surahObject.name}
+                </Link>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
