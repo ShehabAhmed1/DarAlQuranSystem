@@ -399,16 +399,23 @@ input[type="checkbox"]:checked::after {
   cursor: pointer;
 }
 .prepared {
-  padding: 25vh 10px;
+  position: absolute;
+  transform: translateY(50%);
   display: flex;
   flex-direction: column;
   align-self: center;
   justify-content: center;
   text-align: center;
 }
+.prepared h1 {
+  margin-bottom: 10px;
+}
 .prepared li {
   padding: 10px;
   font-size: 20px;
+  display: flex;
+  align-self: center;
+  gap: 10px;
 }
 /***** end race Componant ***********/
 

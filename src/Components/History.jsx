@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { NavigateBtn } from "./Setting";
 import Navbar from "./NavBar";
 import "../App.css";
-//DarAlQuranSystem
+import { FaArrowLeft } from "react-icons/fa6";
 /*** anmations **/
 /***** animations ***********/
 const AniScale = (duration, delayTime) => {
@@ -40,11 +40,43 @@ function History() {
       <Navbar />
       <div className="history-content">
         <div className="main-container">
-          {allMonthsData.map((DataMonth, index) => {
-            return (
-              <Table key={index} DataMonth={DataMonth} nummonth={lastMonth--} />
-            );
-          })}
+          {allMonthsData.length == 0 ? (
+            <ul className="prepared">
+              <h1>
+                نتيجة الطلاب هتظهر هنا في جدول اخر الشهر مترتبين حسب درجاتهم,لو
+                حابب تجرب بس...{" "}
+              </h1>
+              <li>
+                {" "}
+                <FaArrowLeft />
+                ارجع لصفحة السباق
+              </li>
+              <li>
+                {" "}
+                <FaArrowLeft />
+                اضغط علي الاعدادات
+              </li>
+              <li>
+                {" "}
+                <FaArrowLeft /> اختار ابدا شهر جديد
+              </li>
+              <li>
+                {" "}
+                <FaArrowLeft />
+                ارجع هنا تاني هتلاقي جدول درجات الطلاب
+              </li>
+            </ul>
+          ) : (
+            allMonthsData.map((DataMonth, index) => {
+              return (
+                <Table
+                  key={index}
+                  DataMonth={DataMonth}
+                  nummonth={lastMonth--}
+                />
+              );
+            })
+          )}
         </div>
       </div>
     </section>
