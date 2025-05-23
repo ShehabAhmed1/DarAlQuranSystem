@@ -44,14 +44,10 @@ function Race() {
       <NoteBox showNote={showNote} setShowNote={setShowNote} />
       {Database.length == 0 ? (
         <ul className="prepared">
-          <h1>.لو مفيش طلاب يبقي محتاج تحمل بياناتهم</h1>
-          <li>
-            <FaArrowLeft /> اضغط علي علامة الاعدادات
-          </li>
-          <li>
-            {" "}
-            <FaArrowLeft /> اضغط رجع كل حاجه زي مهي
-          </li>
+          <h1>لو الطلاب مش ظاهرين اعمل الخطوات دي عشان يتحملوا...</h1>
+          <li>اضغط علي علامة الاعدادات</li>
+          <FaArrowLeft />
+          <li>اضغط علي "رجع كل حاجه زي مهي"</li>
         </ul>
       ) : (
         <section className="students">

@@ -38,36 +38,24 @@ function History() {
   return (
     <section className="history">
       <Navbar />
-      <div className="history-content">
-        <div className="main-container">
-          {allMonthsData.length == 0 ? (
-            <ul className="prepared">
-              <h1>
-                نتيجة الطلاب هتظهر هنا في جدول اخر الشهر مترتبين حسب درجاتهم,لو
-                حابب تجرب بس...{" "}
-              </h1>
-              <li>
-                {" "}
-                <FaArrowLeft />
-                ارجع لصفحة السباق
-              </li>
-              <li>
-                {" "}
-                <FaArrowLeft />
-                اضغط علي الاعدادات
-              </li>
-              <li>
-                {" "}
-                <FaArrowLeft /> اختار ابدا شهر جديد
-              </li>
-              <li>
-                {" "}
-                <FaArrowLeft />
-                ارجع هنا تاني هتلاقي جدول درجات الطلاب
-              </li>
-            </ul>
-          ) : (
-            allMonthsData.map((DataMonth, index) => {
+      {allMonthsData.length == 0 ? (
+        <ul className="prepared">
+          <h1>
+            نتيجة الطلاب هتظهر هنا في جدول اخر الشهر مترتبين حسب درجاتهم, لو
+            حابب تجربه سريعة اعمل الخطوات دي ....
+          </h1>
+          <li>ارجع لصفحة السباق</li>
+          <FaArrowLeft />
+          <li>اضغط علي الاعدادات</li>
+          <FaArrowLeft />
+          <li>اختار "ابدا شهر جديد"</li>
+          <FaArrowLeft />
+          <li>ارجع هنا تاني هتلاقي جدول درجات الطلاب</li>
+        </ul>
+      ) : (
+        <div className="history-content">
+          <div className="main-container">
+            {allMonthsData.map((DataMonth, index) => {
               return (
                 <Table
                   key={index}
@@ -75,10 +63,10 @@ function History() {
                   nummonth={lastMonth--}
                 />
               );
-            })
-          )}
+            })}
+          </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

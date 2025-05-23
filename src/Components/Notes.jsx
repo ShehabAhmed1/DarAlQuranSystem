@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Navbar from "./NavBar";
 import { mainDatabase } from "./Setting";
+import { li } from "framer-motion/client";
 function Notes() {
   const [stuId, setStuId] = useState(null);
   function handelId(id) {
@@ -17,7 +18,12 @@ function Notes() {
       <Navbar />
       <div className="main-container main">
         <div className="notes-content">
-          <FindNotes handelId={handelId} id={stuId} setGetNotes={setGetNotes} />
+          <FindNotes
+            handelId={handelId}
+            id={stuId}
+            setGetNotes={setGetNotes}
+            mainDatabase={mainDatabase}
+          />
           <div className="student-notes">
             <h1>الملاحظات</h1>
             <GetStudentNotes id={stuId} getNotes={getNotes} />
@@ -29,34 +35,41 @@ function Notes() {
 }
 
 //component to find student note by id
-function FindNotes({ handelId, id, setGetNotes }) {
+function FindNotes({ handelId, id, setGetNotes, mainDatabase }) {
   return (
-    <div className="find-field">
-      <label>دخل رقم الطالب:</label>
-      <input
-        type="number"
-        min={1}
-        max={Object.keys(mainDatabase).length}
-        required
-        onChange={(event) => {
-          handelId(parseInt(event.target.value));
-          setGetNotes(false);
-        }}
-      />
-      <input
-        type="submit"
-        value="هات الملاحظات"
-        onClick={() => {
-          if (id) setGetNotes(true);
-        }}
-      />
+    <div className="notes-searching">
+      <div className="find-field">
+        <label>دخل رقم الطالب:</label>
+        <input
+          type="number"
+          min={1}
+          max={Object.keys(mainDatabase).length}
+          required
+          onChange={(event) => {
+            handelId(parseInt(event.target.value));
+            setGetNotes(false);
+          }}
+        />
+        <input
+          type="submit"
+          value="هات الملاحظات"
+          onClick={() => {
+            if (id) setGetNotes(true);
+          }}
+        />
+      </div>
+      <ul className="stu_ids">
+        {Object.values(mainDatabase).map((stu, index) => {
+          return <li key={index}>{`${stu.name} => ${index + 1}`}</li>;
+        })}
+      </ul>
     </div>
   );
 }
 
 //component to git student note
 function GetStudentNotes({ id, getNotes }) {
-  const currentDatabase = JSON.parse(localStorage.getItem("database"));
+  const currentDatabase = JSON.parse(localStorage.getItem("Quran_Database"));
   const pravMonth = JSON.parse(localStorage.getItem("currentMonth")) - 1;
   const pravDatabase = JSON.parse(localStorage.getItem(`month${pravMonth}`));
 

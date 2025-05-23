@@ -399,13 +399,18 @@ input[type="checkbox"]:checked::after {
   cursor: pointer;
 }
 .prepared {
-  position: absolute;
-  transform: translateY(80%);
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-self: center;
   justify-content: center;
+  align-items: center;
   text-align: center;
+}
+.prepared svg {
+  transform: rotate(-90deg);
 }
 .prepared h1 {
   margin-bottom: 10px;
@@ -647,6 +652,28 @@ input[type="checkbox"]:checked::after {
 .notes-page .main-container.main {
   transform: translateY(100px);
 }
+.notes-searching {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 25px;
+}
+.notes-searching .stu_ids {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 2px solid var(--green);
+  border-left: 0;
+  border-bottom: 0;
+}
+.notes-searching .stu_ids li {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 2px solid var(--green);
+  border-left: 2px solid var(--green);
+}
+
 .find-field {
   display: flex;
   flex-direction: column;
@@ -670,6 +697,9 @@ input[type="checkbox"]:checked::after {
   color: var(--white1);
   font-size: 20px;
   cursor: pointer;
+}
+.notes-content .student-notes {
+  padding: 25px 0;
 }
 .notes-content .student-notes .stu-name {
   text-align: center;
@@ -740,6 +770,12 @@ input[type="checkbox"]:checked::after {
     margin: 0 0 15px 5px;
   }
   /***** surah ******/
+
+  /***** Notes ******/
+  .notes-searching {
+    flex-direction: row;
+  }
+  /***** Notes ******/
 }
 
 @media (min-width: 997px) {

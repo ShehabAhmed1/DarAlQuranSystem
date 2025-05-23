@@ -10,6 +10,7 @@ import Abdelrahman_samy from "../assets/images/students/Abdelrahman_samy.png";
 import Amen from "../assets/images/students/Amen.jpg";
 import hamza from "../assets/images/students/Hamza.jpg";
 import mohamed_Abdelazez from "../assets/images/students/Mohamed_Abdelazez.png";
+import mohamed_Ashraf from "../assets/images/students/mohamed_Ashraf.jpg";
 /**** icons ****/
 import { IoIosArrowBack } from "react-icons/io";
 import { IoSettingsSharp } from "react-icons/io5";
@@ -115,7 +116,7 @@ const mainDatabase = {
       new: 0,
       old: 0,
     },
-    img: shehab,
+    img: mohamed_Ashraf,
     Classes: [false, false, false, false, false, false, false, false],
     notes: [],
   },
